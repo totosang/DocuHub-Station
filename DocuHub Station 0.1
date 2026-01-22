@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuHub - ศูนย์รวมเครื่องมือจัดการเอกสาร</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* ส่วนหัวเว็บไซต์ */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 { margin: 0; font-size: 2.5em; }
+        header p { margin-top: 10px; color: #ecf0f1; font-size: 1.1em; }
+
+        /* พื้นที่จัดวางเครื่องมือ (Grid System) */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            
+            /* หัวใจสำคัญ: จัดเรียงแบบ Grid อัตโนมัติ */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px;
+        }
+
+        /* การ์ดของแต่ละเครื่องมือ */
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* เอฟเฟกต์ตอนเอาเมาส์ชี้ */
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        /* ส่วนรูปภาพหรือวิดีโอ */
+        .media-area {
+            width: 100%;
+            height: 180px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .media-area img, .media-area video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* ให้ภาพเต็มกรอบพอดี */
+        }
+
+        /* เนื้อหาการ์ด */
+        .content-area {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .content-area h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+        .content-area p {
+            margin: 0 0 20px 0;
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        /* ปุ่มกด */
+        .btn-link {
+            margin-top: auto; /* ดันปุ่มไปล่างสุดเสมอ */
+            display: block;
+            width: 100%;
+            padding: 12px 0;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn-link:hover {
+            background-color: #2980b9;
+        }
+
+        /* ตัวอย่างปุ่มสีอื่นๆ */
+        .btn-green { background-color: #27ae60; }
+        .btn-green:hover { background-color: #219150; }
+        
+        .btn-orange { background-color: #e67e22; }
+        .btn-orange:hover { background-color: #d35400; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DocuHub Station</h1>
+        <p>ศูนย์รวมเครื่องมือจัดการเอกสารและยูทิลิตี้ครบวงจร</p>
+    </header>
+
+    <div class="container">
+
+        <div class="tool-card">
+            <div class="media-area">
+                <img src="https://images.unsplash.com/photo-1595079676339-1534801ad6cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="QR Code Tool">
+            </div>
+            <div class="content-area">
+                <h3>1. อ่าน QR Code & Barcode</h3>
+                <p>เครื่องมือสำหรับสแกน QR Code ผ่านกล้อง หรืออัปโหลดไฟล์ภาพเพื่อแปลงเป็นลิงก์</p>
+                <a href="https://totosang.github.io/barcode/" target="_blank" class="btn-link">เปิดใช้งาน</a>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="media-area">
+                <video autoplay loop muted playsinline>
+                    <source src="https://media.istockphoto.com/id/1363643793/video/document-management-system-concept-business-man-using-computer-document-management-system.mp4?s=mp4-640x640-is&k=20&c=wXbYl_JpBDrM0o4h69tH2K7bLgXwYk5tqjZ8lP9o1o=" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="content-area">
+                <h3>2. รวมไฟล์ PDF (Merge)</h3>
+                <p>นำไฟล์ PDF หลายๆ ไฟล์มารวมกันเป็นไฟล์เดียว จัดการง่าย รวดเร็ว</p>
+                <a href="https://www.ilovepdf.com/merge_pdf" target="_blank" class="btn-link btn-orange">เปิดใช้งาน</a>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="media-area">
+                <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Split PDF">
+            </div>
+            <div class="content-area">
+                <h3>3. แยกไฟล์ PDF (Split)</h3>
+                <p>ตัดแบ่งหน้า PDF ออกเป็นไฟล์ย่อยๆ หรือเลือกเฉพาะหน้าที่ต้องการ</p>
+                <a href="#" target="_blank" class="btn-link btn-green">เปิดใช้งาน</a>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="media-area">
+                <img src="https://via.placeholder.com/400x200?text=New+Tool" alt="New Tool">
+            </div>
+            <div class="content-area">
+                <h3>ชื่อโปรแกรมใหม่</h3>
+                <p>คำอธิบายสั้นๆ เกี่ยวกับโปรแกรมนี้ว่าทำอะไรได้บ้าง</p>
+                <a href="#" target="_blank" class="btn-link">เปิดใช้งาน</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
