@@ -1,10 +1,10 @@
-
-
-
+<!DOCTYPE html>
+<html lang="th">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DocuHub - ศูนย์รวมเครื่องมือจัดการเอกสาร</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         body {
@@ -71,7 +71,7 @@
             object-fit: cover; 
         }
 
-        /* --- สไตล์สำหรับกราฟิก PDF (ใช้ร่วมกันทั้ง Merge และ Split) --- */
+        /* --- สไตล์สำหรับกราฟิก PDF (ใช้ร่วมกัน) --- */
         .pdf-visual-container {
             display: flex;
             align-items: center;
@@ -79,6 +79,7 @@
             width: 100%;
             height: 100%;
             background-color: #dfe6e9;
+            position: relative; 
         }
         
         /* ไอคอน PDF มาตรฐาน */
@@ -97,24 +98,75 @@
             margin: 0 15px;
         }
 
-        /* --- สไตล์เฉพาะ: Split (Tool 3) - ใหม่! --- */
+        /* --- สไตล์เฉพาะ: Split (Tool 3) --- */
         .split-arrows-group {
             display: flex;
-            flex-direction: column; /* เรียงลูกศรแนวตั้ง */
+            flex-direction: column;
             justify-content: center;
             margin: 0 15px;
             color: #7f8c8d;
             font-size: 24px;
-            line-height: 18px; /* บีบระยะห่างลูกศร */
+            line-height: 18px;
         }
         .split-result-group {
             display: flex;
-            flex-direction: column; /* เรียง PDF ผลลัพธ์แนวตั้ง */
+            flex-direction: column;
             gap: 5px;
         }
         .pdf-icon-small {
-            width: 35px; /* PDF ไฟล์เล็กทางขวา */
+            width: 35px;
             filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+
+        /* --- สไตล์เฉพาะ: Stamp (Tool 4) - ออกแบบใหม่ยกชุด! --- */
+        .stamp-scene {
+            position: relative;
+            width: 140px; /* พื้นที่ Scene */
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 1. ตัวเอกสาร PDF */
+        .pdf-doc-target {
+            width: 55px;
+            height: auto;
+            z-index: 1; /* อยู่ชั้นล่างสุด */
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+        }
+
+        /* 2. รอยหมึกตราประทับ (สร้างด้วย CSS เพื่อความคมชัด) */
+        .ink-mark-result {
+            position: absolute;
+            bottom: 25px; /* ตำแหน่งบนกระดาษ */
+            right: 25px;
+            z-index: 2; /* อยู่เหนือกระดาษ */
+            
+            /* ดีไซน์กรอบสี่เหลี่ยมเหมือนตรายาง */
+            border: 2px solid #c0392b; 
+            color: #c0392b;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 2px 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: rgba(255,255,255,0.6); /* พื้นหลังโปร่งแสงนิดๆ */
+            border-radius: 3px;
+            
+            /* เอียงเล็กน้อยให้เหมือนปั๊มมือ */
+            transform: rotate(-15deg);
+        }
+
+        /* 3. มือจับตรายาง (Action) */
+        .hand-stamper-tool {
+            position: absolute;
+            width: 75px; /* ขนาดใหญ่เห็นชัด */
+            top: -15px;
+            right: -20px;
+            z-index: 3; /* อยู่บนสุด ทับทุกอย่าง */
+            transform: rotate(5deg); /* เอียงมือนิดหน่อยให้เป็นธรรมชาติ */
+            filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.15)); /* เงาลึกให้ดูลอยออกมา */
         }
 
         /* เนื้อหาการ์ด */
@@ -159,16 +211,27 @@
         
         .btn-orange { background-color: #e67e22; }
         .btn-orange:hover { background-color: #d35400; }
+        
+        .btn-red { background-color: #e74c3c; }
+        .btn-red:hover { background-color: #c0392b; }
 
     </style>
-
-
+</head>
+<body>
 
     <header>
         <h1>DocuHub Station</h1>
-        <h1><b>ศูนย์รวมเครื่องมือจัดการเอกสารและยูทิลิตี้ครบวงจร</b></h1></header><div class="container"><div class="tool-card"><div class="media-area"><img src="https://images.unsplash.com/photo-1595079676339-1534801ad6cf?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="QR Code Tool"></div>
+        <p>ศูนย์รวมเครื่องมือจัดการเอกสารและยูทิลิตี้ครบวงจร</p>
+    </header>
+
+    <div class="container">
+
+        <div class="tool-card">
+            <div class="media-area">
+                <img src="https://images.unsplash.com/photo-1595079676339-1534801ad6cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="QR Code Tool">
+            </div>
             <div class="content-area">
-                <h3>1. อ่าน QR Code &amp; Barcode</h3>
+                <h3>1. อ่าน QR Code & Barcode</h3>
                 <p>เครื่องมือสำหรับสแกน QR Code ผ่านกล้อง หรืออัปโหลดไฟล์ภาพเพื่อแปลงเป็นลิงก์</p>
                 <a href="https://totosang.github.io/barcode/" target="_blank" class="btn-link">เปิดใช้งาน</a>
             </div>
@@ -195,7 +258,8 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Source PDF" class="pdf-icon">
                     
                     <div class="split-arrows-group">
-                        <span>↗</span> <span>↘</span> </div>
+                        <span>&#8599;</span> <span>&#8600;</span>
+                    </div>
 
                     <div class="split-result-group">
                         <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Split PDF 1" class="pdf-icon-small">
@@ -212,15 +276,26 @@
 
         <div class="tool-card">
             <div class="media-area">
-                <img src="https://via.placeholder.com/400x200?text=New+Tool" alt="New Tool">
+                <div class="pdf-visual-container">
+                    <div class="stamp-scene">
+                        
+                        <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF Document" class="pdf-doc-target">
+                        
+                        <div class="ink-mark-result">STAMPED</div>
+                        
+                        <img src="https://cdn-icons-png.flaticon.com/512/10628/10628909.png" alt="Hand Stamping" class="hand-stamper-tool">
+                        
+                    </div>
+                </div>
             </div>
             <div class="content-area">
-                <h3>ชื่อโปรแกรมใหม่</h3>
-                <p>คำอธิบายสั้นๆ เกี่ยวกับโปรแกรมนี้ว่าทำอะไรได้บ้าง</p>
-                <a href="#" target="_blank" class="btn-link">เปิดใช้งาน</a>
+                <h3>4. ประทับตรา PDF (Stamp)</h3>
+                <p>โปรแกรมงานธุรการ ใส่ลายเซ็นหรือตราประทับลงในเอกสาร PDF ได้ง่ายๆ</p>
+                <a href="https://totosang.github.io/PDFStamp-0.1/" target="_blank" class="btn-link btn-red">เปิดใช้งาน</a>
             </div>
         </div>
 
     </div>
 
-
+</body>
+</html>
